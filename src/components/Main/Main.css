@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 3%;
+}
+.card {
+  padding: 20px;
+  width: fit-content;
+  height: fit-content;
+  text-align: center;
+  box-shadow: 5px 5px 10px #888;
+  border-radius: 5px;
+}
+#temp {
+  color: rgb(40, 115, 150);
+}
+.temptype {
+  padding-top: 20px;
+}
+.tempbtn {
+  padding: 5px;
+  width: 40px;
+  border-radius: 5px;
+  margin: 5px;
+  background-color: white;
+}
+.tempbtn:focus {
+  border-style: inset;
+  background-color: #888;
+}
+.tempbtn:hover {
+  background-color: rgb(40, 115, 150);
+}
+form {
+  margin-top: 2%;
+  text-align: center;
+}
+#type {
+  margin-right: 50px;
+}
+#city {
+  font-weight: 400;
+}
