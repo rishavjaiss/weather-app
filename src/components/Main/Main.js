@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Main.css";
-// import API_KEY from "src/env.js";
 
 export default function Main() {
   const [maxTemp, setMaxTemp] = useState("");
@@ -9,10 +8,19 @@ export default function Main() {
   const [temp, setTemp] = useState("");
   const [type, setType] = useState("");
   const [city, setCity] = useState("Kolkata");
+  const [feels, setFeels] = useState("");
+  const [humid, setHumid] = useState("");
+  const [symbol, setSymbol] = useState("C");
 
-  function setC(state) {}
-  function setK(state) {}
-  function setF(state) {}
+  function setC(state) {
+    setSymbol("C");
+  }
+  function setK(state) {
+    setSymbol("K");
+  }
+  function setF(state) {
+    setSymbol("F");
+  }
 
   function newCity(city) {
     setCity(city);
@@ -25,6 +33,8 @@ export default function Main() {
         setMaxTemp(res.data.main.temp_max);
         setMinTemp(res.data.main.temp_min);
         setType(res.data.weather[0].main);
+        setFeels(res.data.main.feels_like);
+        setHumid(res.data.main.humidity);
       });
   }
   useEffect(() => {
@@ -37,6 +47,8 @@ export default function Main() {
         setMaxTemp(res.data.main.temp_max);
         setMinTemp(res.data.main.temp_min);
         setType(res.data.weather[0].main);
+        setFeels(res.data.main.feels_like);
+        setHumid(res.data.main.humidity);
       });
   }, []);
   return (
@@ -55,13 +67,21 @@ export default function Main() {
       </form>
       <div className="container">
         <div className="card">
-          <span id="city">{city}</span>
-          <h2 id="temp">{(temp - 273).toFixed(2)} &#8451;</h2>
+          <h3 id="city">{city}</h3>
+          <h1 id="temp">
+            {(temp - 273).toFixed(2)} {symbol}
+          </h1>
+          <h5>
+            <i>
+              Feels like : {(feels - 273).toFixed(2)} {symbol}
+            </i>
+          </h5>
           <span id="type">{type}</span>
           <span>
-            {(maxTemp - 273).toFixed(2)} &#8451; / {(minTemp - 273).toFixed(2)}{" "}
-            &#8451;
+            {(maxTemp - 273).toFixed(2)} {symbol} / {(minTemp - 273).toFixed(2)}{" "}
+            {symbol}
           </span>
+          <p>Humidity : {humid} &#37;</p>
           <div className="temptype">
             <span>Temperature Type :</span>
             <button id="c" className="tempbtn" onClick={setC}>

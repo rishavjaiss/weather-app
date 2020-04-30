@@ -13,9 +13,10 @@
 }
 #temp {
   color: rgb(40, 115, 150);
+  margin: 15px;
 }
 .temptype {
-  padding-top: 20px;
+  margin-top: 5px;
 }
 .tempbtn {
   padding: 5px;
@@ -39,5 +40,6 @@ form {
   margin-right: 50px;
 }
 #city {
-  font-weight: 400;
+  font-weight: 500;
+  margin: 0;
 }
