@@ -10,16 +10,18 @@ export default function Main() {
   const [city, setCity] = useState("Kolkata");
   const [feels, setFeels] = useState("");
   const [humid, setHumid] = useState("");
-  const [symbol, setSymbol] = useState("C");
+  const [symbol, setSymbol] = useState("°C");
 
-  function setC(state) {
-    setSymbol("C");
-  }
-  function setK(state) {
-    setSymbol("K");
-  }
-  function setF(state) {
-    setSymbol("F");
+  function getTemp(id) {
+    if (id === "c") {
+      setSymbol("°C");
+    }
+    if (id === "k") {
+      setSymbol("K");
+    }
+    if (id === "f") {
+      setSymbol("°F");
+    }
   }
 
   function newCity(city) {
@@ -29,28 +31,18 @@ export default function Main() {
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=52fc60ce71a5b4b724a42352692d2d24`
       )
       .then((res) => {
-        setTemp(res.data.main.temp);
-        setMaxTemp(res.data.main.temp_max);
-        setMinTemp(res.data.main.temp_min);
+        setTemp((res.data.main.temp - 273).toFixed(0));
+        setMaxTemp((res.data.main.temp_max - 273).toFixed(0));
+        setMinTemp((res.data.main.temp_min - 273).toFixed(0));
         setType(res.data.weather[0].main);
-        setFeels(res.data.main.feels_like);
+        setFeels((res.data.main.feels_like - 273).toFixed(0));
         setHumid(res.data.main.humidity);
       });
   }
   useEffect(() => {
-    axios
-      .get(
-        `https://api.openweathermap.org/data/2.5/weather?q=kolkata&appid=52fc60ce71a5b4b724a42352692d2d24`
-      )
-      .then((res) => {
-        setTemp(res.data.main.temp);
-        setMaxTemp(res.data.main.temp_max);
-        setMinTemp(res.data.main.temp_min);
-        setType(res.data.weather[0].main);
-        setFeels(res.data.main.feels_like);
-        setHumid(res.data.main.humidity);
-      });
-  }, []);
+    newCity(city);
+  }, [city]);
+
   return (
     <>
       <form>
@@ -69,28 +61,43 @@ export default function Main() {
         <div className="card">
           <h3 id="city">{city}</h3>
           <h1 id="temp">
-            {(temp - 273).toFixed(2)} {symbol}
+            {temp}
+            {symbol}
           </h1>
           <h5>
             <i>
-              Feels like : {(feels - 273).toFixed(2)} {symbol}
+              Feels like : {feels}
+              {symbol}
             </i>
           </h5>
           <span id="type">{type}</span>
           <span>
-            {(maxTemp - 273).toFixed(2)} {symbol} / {(minTemp - 273).toFixed(2)}{" "}
+            {maxTemp}
+            {symbol} / {minTemp}
             {symbol}
           </span>
           <p>Humidity : {humid} &#37;</p>
           <div className="temptype">
             <span>Temperature Type :</span>
-            <button id="c" className="tempbtn" onClick={setC}>
+            <button
+              id="c"
+              className="tempbtn"
+              onClick={(e) => getTemp(e.target.id)}
+            >
               &#8451;
             </button>
-            <button id="k" className="tempbtn" onClick={setK}>
+            <button
+              id="k"
+              className="tempbtn"
+              onClick={(e) => getTemp(e.target.id)}
+            >
               K
             </button>
-            <button id="f" className="tempbtn" onClick={setF}>
+            <button
+              id="f"
+              className="tempbtn"
+              onClick={(e) => getTemp(e.target.id)}
+            >
               &#8457;
             </button>
           </div>

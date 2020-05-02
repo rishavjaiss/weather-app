@@ -10,9 +10,10 @@
   text-align: center;
   box-shadow: 5px 5px 10px #888;
   border-radius: 5px;
+  background-color: rgb(145, 144, 144);
 }
 #temp {
-  color: rgb(40, 115, 150);
+  color: rgb(21, 19, 136);
   margin: 15px;
 }
 .temptype {
@@ -27,10 +28,12 @@
 }
 .tempbtn:focus {
   border-style: inset;
-  background-color: #888;
+  background-color: rgb(21, 19, 136);
+  color: white;
 }
 .tempbtn:hover {
   background-color: rgb(40, 115, 150);
+  cursor: pointer;
 }
 form {
   margin-top: 2%;
