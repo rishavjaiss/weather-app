@@ -33,7 +33,6 @@
 }
 .tempbtn:hover {
   background-color: rgb(40, 115, 150);
-  cursor: pointer;
 }
 form {
   margin-top: 2%;
