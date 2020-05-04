@@ -3,6 +3,7 @@ import axios from "axios";
 import "./Main.css";
 
 export default function Main() {
+  const API_KEY = "52fc60ce71a5b4b724a42352692d2d24";
   const [maxTemp, setMaxTemp] = useState("");
   const [minTemp, setMinTemp] = useState("");
   const [temp, setTemp] = useState("");
@@ -12,37 +13,58 @@ export default function Main() {
   const [humid, setHumid] = useState("");
   const [symbol, setSymbol] = useState("°C");
 
-  function getTemp(id) {
-    if (id === "c") {
-      setSymbol("°C");
+  const getRelevantTemp = (symbol) => {
+    var t;
+    switch (symbol) {
+      case "°C":
+        t = 0;
+        t = (temp - 273).toFixed(0);
+        break;
+      case "K":
+        t = 0;
+        t = temp;
+        break;
+      case "°F":
+        t = 0;
+        t = ((temp - 273) * (9 / 5) + 32).toFixed(0);
+        break;
+      default:
     }
-    if (id === "k") {
-      setSymbol("K");
-    }
-    if (id === "f") {
-      setSymbol("°F");
-    }
-  }
+    debugger;
+    return t;
+  };
 
   function newCity(city) {
     setCity(city);
     axios
       .get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=52fc60ce71a5b4b724a42352692d2d24`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
       )
       .then((res) => {
-        setTemp((res.data.main.temp - 273).toFixed(0));
-        setMaxTemp((res.data.main.temp_max - 273).toFixed(0));
-        setMinTemp((res.data.main.temp_min - 273).toFixed(0));
+        setTemp(res.data.main.temp);
+        setMaxTemp(res.data.main.temp_max);
+        setMinTemp(res.data.main.temp_min);
         setType(res.data.weather[0].main);
-        setFeels((res.data.main.feels_like - 273).toFixed(0));
+        setFeels(res.data.main.feels_like);
         setHumid(res.data.main.humidity);
+        console.log("API CALLED");
       });
   }
   useEffect(() => {
-    newCity(city);
-  }, [city]);
-
+    axios
+      .get(
+        `https://api.openweathermap.org/data/2.5/weather?q=kolkata&appid=${API_KEY}`
+      )
+      .then((res) => {
+        setTemp(res.data.main.temp);
+        setMaxTemp(res.data.main.temp_max);
+        setMinTemp(res.data.main.temp_min);
+        setType(res.data.weather[0].main);
+        setFeels(res.data.main.feels_like);
+        setHumid(res.data.main.humidity);
+        console.log("API CALLED");
+      });
+  }, []);
   return (
     <>
       <form>
@@ -61,7 +83,7 @@ export default function Main() {
         <div className="card">
           <h3 id="city">{city}</h3>
           <h1 id="temp">
-            {temp}
+            {getRelevantTemp()}
             {symbol}
           </h1>
           <h5>
@@ -79,25 +101,13 @@ export default function Main() {
           <p>Humidity : {humid} &#37;</p>
           <div className="temptype">
             <span>Temperature Type :</span>
-            <button
-              id="c"
-              className="tempbtn"
-              onClick={(e) => getTemp(e.target.id)}
-            >
+            <button id="c" className="tempbtn" onClick={() => setSymbol("°C")}>
               &#8451;
             </button>
-            <button
-              id="k"
-              className="tempbtn"
-              onClick={(e) => getTemp(e.target.id)}
-            >
+            <button id="k" className="tempbtn" onClick={() => setSymbol("K")}>
               K
             </button>
-            <button
-              id="f"
-              className="tempbtn"
-              onClick={(e) => getTemp(e.target.id)}
-            >
+            <button id="f" className="tempbtn" onClick={() => setSymbol("°F")}>
               &#8457;
             </button>
           </div>
