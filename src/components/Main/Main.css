@@ -10,7 +10,11 @@
   text-align: center;
   box-shadow: 5px 5px 10px #888;
   border-radius: 5px;
-  background-color: rgb(145, 144, 144);
+  background: linear-gradient(
+    90deg,
+    rgba(238, 174, 202, 1) 0%,
+    rgba(148, 187, 233, 1) 100%
+  );
 }
 #temp {
   color: rgb(21, 19, 136);
@@ -20,7 +24,7 @@
   margin-top: 5px;
 }
 .tempbtn {
-  padding: 5px;
+  padding: 10px;
   width: 40px;
   border-radius: 5px;
   margin: 5px;
@@ -28,7 +32,7 @@
 }
 .tempbtn:focus {
   border-style: inset;
-  background-color: rgb(21, 19, 136);
+  background-color: rgb(40, 115, 150);
   color: white;
 }
 .tempbtn:hover {
@@ -44,4 +48,13 @@ form {
 #city {
   font-weight: 500;
   margin: 0;
+}
+.addCity {
+  text-align: center;
+  margin-top: 3%;
+}
+.addbtn {
+  padding: 10px 70px 10px 70px;
+  border-radius: 5px;
+  background-color: lightslategray;
 }

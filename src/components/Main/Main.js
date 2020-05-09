@@ -13,25 +13,69 @@ export default function Main() {
   const [humid, setHumid] = useState("");
   const [symbol, setSymbol] = useState("°C");
 
-  const getRelevantTemp = (symbol) => {
-    var t;
+  const getTemp = (symbol) => {
+    var t = 0;
     switch (symbol) {
       case "°C":
-        t = 0;
         t = (temp - 273).toFixed(0);
         break;
       case "K":
-        t = 0;
         t = temp;
         break;
       case "°F":
-        t = 0;
         t = ((temp - 273) * (9 / 5) + 32).toFixed(0);
         break;
       default:
     }
-    debugger;
     return t;
+  };
+  const getMinTemp = (symbol) => {
+    var min = 0;
+    switch (symbol) {
+      case "°C":
+        min = (minTemp - 273).toFixed(0);
+        break;
+      case "K":
+        min = minTemp;
+        break;
+      case "°F":
+        min = ((minTemp - 273) * (9 / 5) + 32).toFixed(0);
+        break;
+      default:
+    }
+    return min;
+  };
+  const getMaxTemp = (symbol) => {
+    var max;
+    switch (symbol) {
+      case "°C":
+        max = (maxTemp - 273).toFixed(0);
+        break;
+      case "K":
+        max = maxTemp;
+        break;
+      case "°F":
+        max = ((maxTemp - 273) * (9 / 5) + 32).toFixed(0);
+        break;
+      default:
+    }
+    return max;
+  };
+  const getFeelsTemp = (symbol) => {
+    var f;
+    switch (symbol) {
+      case "°C":
+        f = (feels - 273).toFixed(0);
+        break;
+      case "K":
+        f = feels;
+        break;
+      case "°F":
+        f = ((feels - 273) * (9 / 5) + 32).toFixed(0);
+        break;
+      default:
+    }
+    return f;
   };
 
   function newCity(city) {
@@ -47,7 +91,7 @@ export default function Main() {
         setType(res.data.weather[0].main);
         setFeels(res.data.main.feels_like);
         setHumid(res.data.main.humidity);
-        console.log("API CALLED");
+        console.log(res.data);
       });
   }
   useEffect(() => {
@@ -62,9 +106,19 @@ export default function Main() {
         setType(res.data.weather[0].main);
         setFeels(res.data.main.feels_like);
         setHumid(res.data.main.humidity);
-        console.log("API CALLED");
       });
   }, []);
+
+  // function handleSubmit(e) {
+  //   var city = e.target.textContent.split(" ")[1];
+  //   axios
+  //     .post(`https://weather-app-64739.firebaseio.com/.json`, {
+  //       city: city,
+  //       temp: temp,
+  //     })
+  //     .then(alert(`${city} has been added successfully!`));
+  // }
+
   return (
     <>
       <form>
@@ -83,19 +137,19 @@ export default function Main() {
         <div className="card">
           <h3 id="city">{city}</h3>
           <h1 id="temp">
-            {getRelevantTemp()}
+            {getTemp(symbol)}
             {symbol}
           </h1>
           <h5>
             <i>
-              Feels like : {feels}
+              Feels like : {getFeelsTemp(symbol)}
               {symbol}
             </i>
           </h5>
           <span id="type">{type}</span>
           <span>
-            {maxTemp}
-            {symbol} / {minTemp}
+            {getMaxTemp(symbol)}
+            {symbol} / {getMinTemp(symbol)}
             {symbol}
           </span>
           <p>Humidity : {humid} &#37;</p>
@@ -113,6 +167,11 @@ export default function Main() {
           </div>
         </div>
       </div>
+      {/* <div className="addCity">
+        <button className="addbtn" onClick={(e) => handleSubmit(e)}>
+          Add {city} to My Cities
+        </button>
+      </div> */}
     </>
   );
 }
