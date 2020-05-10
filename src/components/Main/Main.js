@@ -20,7 +20,7 @@ export default function Main() {
         t = (temp - 273).toFixed(0);
         break;
       case "K":
-        t = temp;
+        t = temp.toFixed(0);
         break;
       case "°F":
         t = ((temp - 273) * (9 / 5) + 32).toFixed(0);
@@ -36,7 +36,7 @@ export default function Main() {
         min = (minTemp - 273).toFixed(0);
         break;
       case "K":
-        min = minTemp;
+        min = minTemp.toFixed(0);
         break;
       case "°F":
         min = ((minTemp - 273) * (9 / 5) + 32).toFixed(0);
@@ -52,7 +52,7 @@ export default function Main() {
         max = (maxTemp - 273).toFixed(0);
         break;
       case "K":
-        max = maxTemp;
+        max = maxTemp.toFixed(0);
         break;
       case "°F":
         max = ((maxTemp - 273) * (9 / 5) + 32).toFixed(0);
@@ -68,7 +68,7 @@ export default function Main() {
         f = (feels - 273).toFixed(0);
         break;
       case "K":
-        f = feels;
+        f = feels.toFixed(0);
         break;
       case "°F":
         f = ((feels - 273) * (9 / 5) + 32).toFixed(0);
@@ -109,22 +109,23 @@ export default function Main() {
       });
   }, []);
 
-  // function handleSubmit(e) {
-  //   var city = e.target.textContent.split(" ")[1];
-  //   axios
-  //     .post(`https://weather-app-64739.firebaseio.com/.json`, {
-  //       city: city,
-  //       temp: temp,
-  //     })
-  //     .then(alert(`${city} has been added successfully!`));
-  // }
+  function handleSubmit(e) {
+    let t = (temp - 273).toFixed(0);
+    axios
+      .post(`https://weather-app-64739.firebaseio.com/.json`, {
+        City: city,
+        Temperature: `${t}°C`,
+      })
+      .then(alert(`${city} has been added successfully!`));
+  }
 
   return (
     <>
       <form>
         <label>Select a city : </label>
-        <select onChange={(e) => newCity(e.target.value)}>
+        <select id="choose" onChange={(e) => newCity(e.target.value)}>
           <option value="Kolkata">Kolkata</option>
+          <option value="New Delhi">New Delhi</option>
           <option value="Mumbai">Mumbai</option>
           <option value="Bangalore">Bangalore</option>
           <option value="Chennai">Chennai</option>
@@ -167,11 +168,11 @@ export default function Main() {
           </div>
         </div>
       </div>
-      {/* <div className="addCity">
+      <div className="addCity">
         <button className="addbtn" onClick={(e) => handleSubmit(e)}>
           Add {city} to My Cities
         </button>
-      </div> */}
+      </div>
     </>
   );
 }

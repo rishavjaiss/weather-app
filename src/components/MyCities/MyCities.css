@@ -1,24 +1,51 @@
 .box {
   display: flex;
-  width: fit-content;
-  flex-flow: row;
   justify-content: center;
 }
-.cities {
-  padding: 10px 100px 10px 100px;
+h2 {
+  text-align: center;
+}
+.cityContainer {
+  width: fit-content;
+}
+.city {
+  width: 75%;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 25px 50px;
+  background: #2bc0e4; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to left,
+    #eaecc6,
+    #2bc0e4
+  ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
-    90deg,
-    rgba(238, 174, 202, 1) 0%,
-    rgba(148, 187, 233, 1) 100%
-  );
+    to left,
+    #eaecc6,
+    #2bc0e4
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   margin-top: 5%;
 }
 .temp {
   padding: 10px 100px 10px 100px;
+  background: #2bc0e4; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to left,
+    #eaecc6,
+    #2bc0e4
+  ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
-    90deg,
-    rgba(238, 174, 202, 1) 0%,
-    rgba(148, 187, 233, 1) 100%
-  );
+    to left,
+    #eaecc6,
+    #2bc0e4
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   margin-top: 5%;
+}
+#removebtn {
+  background-color: lightpink;
+  border-radius: 5px;
+  padding: 5px;
 }

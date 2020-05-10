@@ -10,11 +10,20 @@
   text-align: center;
   box-shadow: 5px 5px 10px #888;
   border-radius: 5px;
+  background: #2bc0e4; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to left,
+    #eaecc6,
+    #2bc0e4
+  ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
-    90deg,
-    rgba(238, 174, 202, 1) 0%,
-    rgba(148, 187, 233, 1) 100%
-  );
+    to left,
+    #eaecc6,
+    #2bc0e4
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+#choose {
+  padding: 5px;
 }
 #temp {
   color: rgb(21, 19, 136);
@@ -56,5 +65,5 @@ form {
 .addbtn {
   padding: 10px 70px 10px 70px;
   border-radius: 5px;
-  background-color: lightslategray;
+  background-color: lightpink;
 }

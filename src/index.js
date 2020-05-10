@@ -2,13 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
-import Navbar from "./components/Navbar/Navbar";
-import Main from "./components/Main/Main";
+// import Navbar from "./components/Navbar/Navbar";
+// import Main from "./components/Main/Main";
+import RoutePack from "./components/RoutePack/RoutePack";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Navbar />
-    <Main />
+    <RoutePack />
   </React.StrictMode>,
   document.getElementById("root")
 );
