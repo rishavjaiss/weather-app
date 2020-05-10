@@ -16,7 +16,6 @@ export default function MyCities() {
       myCityArray.push(city);
       myTempArray.push(temp);
       myCityID.push(id);
-      debugger;
     }
     const cityList = myCityArray.map((city, index) => (
       <div className="city" id={myCityID[index]} key={index}>
@@ -33,17 +32,15 @@ export default function MyCities() {
   const handleRemove = (e) => {
     let id = e.target.parentNode.id;
     axios.delete(`https://weather-app-64739.firebaseio.com/${id}.json`);
+    e.currentTarget.parentNode.remove();
   };
 
-  function fetch() {
+  useEffect(() => {
+    document.title = "My Citites";
     axios
       .get("https://weather-app-64739.firebaseio.com/.json")
       .then((res) => setMyCity(res.data));
-  }
-
-  useEffect(() => {
-    fetch();
-  });
+  }, []);
 
   return (
     <>

@@ -91,7 +91,6 @@ export default function Main() {
         setType(res.data.weather[0].main);
         setFeels(res.data.main.feels_like);
         setHumid(res.data.main.humidity);
-        console.log(res.data);
       });
   }
   useEffect(() => {
@@ -107,6 +106,8 @@ export default function Main() {
         setFeels(res.data.main.feels_like);
         setHumid(res.data.main.humidity);
       });
+    console.log("HELLO CURIOUS LAD ;)");
+    document.title = "Weather App";
   }, []);
 
   function handleSubmit(e) {

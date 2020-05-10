@@ -10,19 +10,20 @@
     #eaecc6,
     #2bc0e4
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
   min-height: 10vh;
   align-items: center;
   justify-content: space-around;
   display: flex;
 }
 h3 {
+  margin-left: 1%;
   font-weight: 300;
 }
 ul {
   list-style: none;
   display: flex;
-  width: 30vw;
+  width: 40vw;
+  margin-right: 2%;
   text-decoration: none;
   justify-content: space-around;
 }
