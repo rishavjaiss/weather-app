@@ -36,7 +36,7 @@ export default function MyCities() {
   };
 
   useEffect(() => {
-    document.title = "My Citites";
+    document.title = "My Cities";
     axios
       .get("https://weather-app-64739.firebaseio.com/.json")
       .then((res) => setMyCity(res.data));

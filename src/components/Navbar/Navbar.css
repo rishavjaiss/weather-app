@@ -16,14 +16,13 @@
   display: flex;
 }
 h3 {
-  margin-left: 1%;
   font-weight: 300;
 }
 ul {
   list-style: none;
   display: flex;
   width: 40vw;
-  margin-right: 2%;
+  margin-right: 1%;
   text-decoration: none;
   justify-content: space-around;
 }

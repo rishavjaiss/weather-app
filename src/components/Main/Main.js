@@ -106,7 +106,6 @@ export default function Main() {
         setFeels(res.data.main.feels_like);
         setHumid(res.data.main.humidity);
       });
-    console.log("HELLO CURIOUS LAD ;)");
     document.title = "Weather App";
   }, []);
 

@@ -16,6 +16,9 @@ export default function Navbar() {
         <Link to="/MyCities">
           <li>My Cities</li>
         </Link>
+        <Link to="/About">
+          <li>About</li>
+        </Link>
       </ul>
     </div>
   );
