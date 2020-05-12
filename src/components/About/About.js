@@ -9,6 +9,7 @@ export default function About() {
       style={{
         display: "flex",
         flexDirection: "column",
+        margin: "1%",
       }}
     >
       <br></br>

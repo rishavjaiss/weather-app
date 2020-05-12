@@ -21,8 +21,7 @@ h3 {
 ul {
   list-style: none;
   display: flex;
-  width: 40vw;
-  margin-right: 1%;
+  width: 50vw;
   text-decoration: none;
   justify-content: space-around;
 }
